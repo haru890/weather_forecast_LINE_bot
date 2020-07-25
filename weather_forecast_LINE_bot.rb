@@ -1,4 +1,5 @@
 require 'json'
+require_relative 'token'
 
 def lambda_handler(event:, context:)
     
@@ -11,7 +12,7 @@ def lambda_handler(event:, context:)
     weather = JSON.parse(res)['weather'][0]["description"]
     message = "#{name}の天気は#{weather}です"
     
-    res = Net::HTTP.post(URI.parse('https://notify-api.line.me/api/notify'), "message=#{message}", {'Authorization': 'Bearer PvYwuA0nQxCzITu4AvblrZ5iU2T3nZPfu82JOyTjuym'})
+    res = Net::HTTP.post(URI.parse('https://notify-api.line.me/api/notify'), "message=#{message}", {'Authorization': "Bearer #{TOKEN}"})
     
     # { statusCode: 200, body: JSON.generate('Hello from Lambda!') }
     
