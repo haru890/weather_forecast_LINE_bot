@@ -1,6 +1,9 @@
 require 'json'
 require_relative 'token'
+<<<<<<< HEAD
 require 'time'
+=======
+>>>>>>> 94dd02c922a5cb54406483f26b8a25977b06f8c1
 
 def lambda_handler(event:, context:)
     
@@ -29,7 +32,11 @@ def lambda_handler(event:, context:)
     #   風速は#{wind_speed}
     # EOS
     
+<<<<<<< HEAD
     res = Net::HTTP.post(URI.parse('https://notify-api.line.me/api/notify'), "message=#{message}", {'Authorization': "Bearer #{LINE_TOKEN}"})
+=======
+    res = Net::HTTP.post(URI.parse('https://notify-api.line.me/api/notify'), "message=#{message}", {'Authorization': "Bearer #{TOKEN}"})
+>>>>>>> 94dd02c922a5cb54406483f26b8a25977b06f8c1
     
     # { statusCode: 200, body: JSON.generate('Hello from Lambda!') }
     
