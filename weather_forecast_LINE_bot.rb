@@ -14,11 +14,12 @@ def lambda_handler(event:, context:)
     weather = JSON.parse(res)['weather'][0]["description"]
     sunrise = Time.at(JSON.parse(res)['sys']["sunrise"]).getlocal('+09:00').strftime("%H:%M:%S")
     sunset = Time.at(JSON.parse(res)['sys']["sunset"]).getlocal('+09:00').strftime("%H:%M:%S")
+    day_time = Time.at(JSON.parse(res)['sys']["sunset"] - JSON.parse(res)['sys']["sunrise"]).strftime("%H:%M:%S")
     temp = JSON.parse(res)['main']['temp']
     humidity = JSON.parse(res)['main']['humidity']
     wind_speed = JSON.parse(res)['wind']['speed']
     
-    message = "\n#{name}の天気は#{weather}です\n日の出は#{sunrise}です\n日没は#{sunset}です\n気温は#{temp}\n湿度は#{humidity}\n風速は#{wind_speed}"
+    message = "\n#{name}の天気は#{weather}です\n日の出は#{sunrise}です\n日没は#{sunset}です\n昼の長さは#{day_time}です\n気温は#{temp}℃\n湿度は#{humidity}％\n風速は#{wind_speed}m/s"
     
     # message = <<"EOS"
     #   #{name}の天気は#{weather}
